@@ -12,7 +12,7 @@ export default class App extends Component {
                     <h1>Lets get it!</h1>
                 </header>
 
-                <div class="row">
+                <div className="row">
                     <GameData />
                     <Board />
                 </div>

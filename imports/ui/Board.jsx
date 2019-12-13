@@ -13,11 +13,13 @@ export default class Board extends Component {
         const opperator = rowNumber % 2;
         let vertex;
         let center;
+        let key;
         for (let i = 0; i < 11; i++) {
             vertex = i % 2 !== opperator;
             center = vertex && rowNumber % 3 === 2;
+            key = (rowNumber * 11) + i;
             row.push(
-                <Tile vertex={vertex} center={center}/>
+                <Tile key={key} vertex={vertex} center={center}/>
             )
         }
         return row;
@@ -27,19 +29,8 @@ export default class Board extends Component {
         const rows = []
         for (let i = 0; i < 17; i++) {
             rows.push(
-                <div className="row">
+                <div className="row" key={i}>
                     {this.renderSingleRow(i)}
-                    {/* <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile /> */}
                 </div>
             )
         }
@@ -51,227 +42,6 @@ export default class Board extends Component {
             <div className="board">
                 Here is the board
                 {this.renderRows()}
-                {/* <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div>
-                <div className="row">
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                    <Tile />
-                </div> */}
             </div>
         );
     }
