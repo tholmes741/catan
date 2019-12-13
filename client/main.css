@@ -1,0 +1,44 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.row {
+    display: flex;
+}
+
+.tile {
+    flex: 1;
+    border: 1px solid black;
+    height: 35px;
+}
+
+.vertex {
+    background: green;
+}
+
+.center {
+    background: red;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.game-data {
+    flex: 1;
+    border: 1px solid black;
+}
+
+.board {
+    flex: 3;
+    border: 1px solid black;
+}
+
+.player-data {
+    border: 1px solid black;
+}
