@@ -36,9 +36,14 @@ body {
 
 .board {
     flex: 3;
-    border: 1px solid black;
 }
 
 .player-data {
     border: 1px solid black;
 }
+
+.flex-item {
+    flex: 1;
+}
+
+
