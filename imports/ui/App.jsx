@@ -36,7 +36,6 @@ export default withTracker(() => {
     let currentUser = Meteor.user();
     let game;
     if (currentUser) {
-        console.log(Meteor.userId());
         game = Games.findOne({
             $or: [
                 {'player1.id': Meteor.userId()},
