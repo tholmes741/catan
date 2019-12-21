@@ -4,13 +4,20 @@ import { Games } from '../api/games.js';
 import GameData from './GameData.jsx';
 import PlayerData from './PlayerData.jsx';
 import Board from './Board.jsx'
+import CreateGame from './CreateGame.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 // App component - represents the whole app
 class App extends Component {
     render() {
+        let createGame;
         let game;
-        if (this.props.game) {
+        if (this.props.currentUser && !this.props.game) {
+            createGame = <div>
+                <CreateGame />
+            </div>;
+        } else if (this.props.game) {
+
             game =<div>
                 <div className="row">
                     <GameData game={this.props.game}/>
@@ -26,6 +33,7 @@ class App extends Component {
                     <AccountsUIWrapper />
                 </div>
 
+                {createGame}
                 {game}
             </div>
         );

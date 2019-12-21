@@ -4,20 +4,28 @@ import { check } from 'meteor/check';
 
 export const Games = new Mongo.Collection('games');
 
-// export const TILESET = ['brick', 'ore', 'sheep', 'wheat', 'wood', 'desert'];
+export const TILESET = ['brick', 'ore', 'sheep', 'wheat', 'wood', 'desert'];
 
 const tiles = [1,1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6];
 
 Meteor.methods({
-    'games.init'(player2) {
-        check(player2, 'String');
+    'games.insert'(player2) {
+        check(player2, String);
 
         if (!this.userId) {
-            throw new Meteor.Error('not-authorized');
+            throw new Meteor.Error('not-authorized', 'reason number 1');
         }
 
-        player2 = Users.find({username: player2});
-        let board = shuffle(tiles);
+        player2 = Meteor.users.findOne({username: player2, _id: {$ne: this.userId}});
+        if (!player2) {
+            throw new Meteor.Error('invalid-user', 'user doesn\'t exist');
+        }
+
+        let board = tiles.slice();
+        for (let i = board.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [board[i], board[j]] = [board[j], board[i]];
+        }
 
         let game = {
             player1: {
@@ -46,14 +54,3 @@ Meteor.methods({
         Games.insert(game);
     }
 });
-
-
-
-function shuffleArray(a) {
-    let x = a.slice()
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-}
