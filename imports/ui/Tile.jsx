@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 
+const TILESET = [null, 'brick', 'ore', 'sheep', 'wheat', 'wood', 'desert'];
+
 export default class Tile extends Component {
     renderTile() {
         // if (this.props.center) {
@@ -15,10 +17,15 @@ export default class Tile extends Component {
             center: this.props.center
         });
 
+        let tileType;
+        if (Number.isInteger(this.props.tileType)) {
+            tileType = TILESET[this.props.tileType];
+        }
+
         return (
             <div className={tileClassName}>
-                tile
-                {this.renderTile()}
+                {tileType}
+                {/* {this.renderTile()} */}
             </div>
         );
     }

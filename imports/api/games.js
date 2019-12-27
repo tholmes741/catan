@@ -6,7 +6,7 @@ export const Games = new Mongo.Collection('games');
 
 export const TILESET = ['brick', 'ore', 'sheep', 'wheat', 'wood', 'desert'];
 
-const tiles = [1,1,1,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6];
+const tiles = [0,0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5];
 
 Meteor.methods({
     'games.insert'(player2) {
