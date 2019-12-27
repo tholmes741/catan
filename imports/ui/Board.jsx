@@ -4,9 +4,6 @@ import Tile from './Tile.jsx';
 
 export default class Board extends Component {
     //Grid of tiles is 11x17 not including room for water
-    state = {
-        tiles: [],
-    }
 
     renderRows() {
         const rows = []
@@ -43,7 +40,7 @@ export default class Board extends Component {
                     tileType = null;
                 }
                 row.push(
-                    <Tile key={key} vertex={vertex} center={center} tileType={tileType}/>
+                    <Tile key={key} vertex={vertex} center={center} tileType={tileType} coordinates={[i,rowNumber]}/>
                 )
             }
             return row;

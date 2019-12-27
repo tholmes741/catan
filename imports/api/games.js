@@ -1,12 +1,9 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import * as gameData from './gameData.json';
 
 export const Games = new Mongo.Collection('games');
-
-export const TILESET = ['brick', 'ore', 'sheep', 'wheat', 'wood', 'desert'];
-
-const tiles = [0,0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5];
 
 Meteor.methods({
     'games.insert'(player2) {
@@ -21,7 +18,7 @@ Meteor.methods({
             throw new Meteor.Error('invalid-user', 'user doesn\'t exist');
         }
 
-        let board = tiles.slice();
+        let board = gameData.tiles.slice();
         for (let i = board.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [board[i], board[j]] = [board[j], board[i]];
@@ -45,7 +42,7 @@ Meteor.methods({
                 roads: 15
             },
             currentTurn: 1,
-            previousRoll: 7,
+            rolls: [],
             board: board, //the order of the tiles will be generated and placed in here
             robber: board.indexOf(6),
             createdOn: new Date(),
