@@ -8,15 +8,16 @@ export default class Board extends Component {
     renderRows() {
         const rows = []
         let tileIdx = 0;
+        let numberIdx = 0;
         for (let i = 0; i < 17; i++) {
             rows.push(
                 <div className="row" key={i}>
-                    {renderSingleRow(i, this.props.game.board)}
+                    {renderSingleRow(i, this.props.game)}
                 </div>
             )
         }
 
-        function renderSingleRow(rowNumber, board) {
+        function renderSingleRow(rowNumber, game) {
             const rules = [2,3,3,3,4,4,4,5,5,5,4,4,4,3,3,3,2];
     
             const row = [];
@@ -26,6 +27,7 @@ export default class Board extends Component {
             let center;
             let key;
             let tileType;
+            let number;
             let isBoard;
 
             for (let i = 0; i < 11; i++) {
@@ -34,13 +36,21 @@ export default class Board extends Component {
                 center = vertex && rowNumber % 3 === 2 && isBoard;
                 key = (rowNumber * 11) + i;
                 if (vertex && center && isBoard) {
-                    tileType = board[tileIdx];
+                    tileType = game.board[tileIdx];
                     tileIdx++;
+
+                    if (tileType !== 5) {
+                        number = game.numbers[numberIdx];
+                        numberIdx++;
+                    } else {
+                        number = null;
+                    }
                 } else {
                     tileType = null;
+                    number = null;
                 }
                 row.push(
-                    <Tile key={key} vertex={vertex} center={center} tileType={tileType} coordinates={[i,rowNumber]}/>
+                    <Tile key={key} vertex={vertex} center={center} number={number} tileType={tileType} coordinates={[i,rowNumber]}/>
                 )
             }
             return row;

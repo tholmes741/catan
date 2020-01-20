@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-
-const TILESET = [null, 'brick', 'ore', 'sheep', 'wheat', 'wood', 'desert'];
+import * as gameData from '../api/gameData.json';
 
 export default class Tile extends Component {
     renderTile() {
@@ -19,12 +18,12 @@ export default class Tile extends Component {
 
         let tileType;
         if (Number.isInteger(this.props.tileType)) {
-            tileType = TILESET[this.props.tileType];
+            tileType = gameData.tileNames[this.props.tileType];
         }
 
         return (
             <div className={tileClassName}>
-                {tileType}
+                {this.props.number} {tileType}
                 {/* {this.renderTile()} */}
             </div>
         );
